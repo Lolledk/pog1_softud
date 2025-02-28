@@ -46,7 +46,7 @@ int main() {
 
 		std::cin >> choice;
 
-		std::cin.ignore();
+		std::cin.ignore(); // Clears the newline character from input buffer
 		
 	} while (choice == 'y' || choice == 'Y');
 
