@@ -36,7 +36,7 @@ int main() {
 
 	// Loop to allow the user to add multiple tasks
 	while (choice != '3') {
-	std::cout << "Menu: " << std::endl;
+	std::cout << "Menu: \n" << std::endl;
 	std::cout << "1. Add a task" << std::endl;
 	std::cout << "2. View tasks" << std::endl;
 	std::cout << "3. Exit" << std::endl;
@@ -69,6 +69,8 @@ int main() {
 			for (int i = 0; i < todo.todolist.size(); i++) {
 				std::cout << i + 1 << ". " << todo.todolist[i]._description << std::endl;
 			}
+			std::cout << std::endl;
+			
 			break;
 		case '3':
 			std::cout << "Exiting..." << std::endl;
