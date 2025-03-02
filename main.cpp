@@ -30,17 +30,14 @@ class TodoList
 };
 
 int main() {
-    
+    TodoList todo = TodoList();
+	std::string taskDescription;
 	char choice;
 
 	// Loop to allow the user to add multiple tasks
-<<<<<<< HEAD
 	while (choice != '3') {
 	std::cout << "Menu: \n" << std::endl;
-=======
-	do {
-	std::cout << "Menu: " << std::endl;
->>>>>>> parent of eee1bdb (Menu Ficed GUI)
+
 	std::cout << "1. Add a task" << std::endl;
 	std::cout << "2. View tasks" << std::endl;
 	std::cout << "3. Exit" << std::endl;
@@ -56,16 +53,20 @@ int main() {
 			std::cout << "Do you want to add another task? (y/n): ";
 			std::cin >> choice;
 			std::cin.ignore(); // Clears the newline character from input buffer
-		        switch (choice) {
-					case 'y' || case 'Y':
-						std::cout << "Enter task description: ";
-						std::getline(std::cin, taskDescription);
-						todo.addTask(taskDescription);
-						break;
-					case 'n' || case 'N':
-						break;
+			if (choice == 'y') {
+					std::cout << "Enter task description: ";
+					std::getline(std::cin, taskDescription);
+					todo.addTask(taskDescription);
+					break;
 				}
-	std::cin.ignore();
+			else if (choice == 'n') {
+				break;
+			}
+			else {
+				std::cout << "Invalid choice. Returning to main menu." << std::endl;
+				break;
+			}
+			std::cin.ignore();
 			break;
 		case '2':
 			std::cout << "Tasks: " << std::endl;
@@ -81,6 +82,7 @@ int main() {
 		default:
 			std::cout << "Invalid choice. Please try again." << std::endl;
 	}
-
-    return 0;
 }
+	return 0;
+}
+
