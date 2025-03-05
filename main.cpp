@@ -30,9 +30,10 @@ class TodoList
     }
 
     // Method to edit a task in the list
-    void editTask(int index, const std::string & description) {
+    void editTask(int index, const std::string & description, bool completed) {
         if (index >= 0 && index < todolist.size()) {
             todolist[index]._description = description;
+            todolist[index]._completed = completed;
         } else {
             std::cout << "Invalid task number." << std::endl;
         }
@@ -47,6 +48,15 @@ class TodoList
         }
     }
 
+    void deleteTask(int index) {
+        if (index >= 0 && index < todolist.size()) {
+            todolist.erase(todolist.begin() + index);
+        } else {
+            std::cout << "Invalid task number." << std::endl;
+        }
+    }
+
+
     TodoList(){}
 };
 
@@ -56,14 +66,15 @@ int main() {
     char choice;
 
     // Loop to allow the user to add multiple tasks
-    while (choice != '5') {
+    while (choice != '6') {
     std::cout << "\nMenu:" << std::endl;
 
     std::cout << "1. Add a task" << std::endl;
     std::cout << "2. Mark task as completed" << std::endl;
     std::cout << "3. View tasks" << std::endl;
     std::cout << "4. Edit a task" << std::endl;
-    std::cout << "5. Exit" << std::endl;
+    std::cout << "5. Delete a task" << std::endl;
+    std::cout << "6. Exit" << std::endl;
     std::cout << "\nEnter your choice: ";
     std::cin >> choice;
     std::cin.ignore(); // Clears the newline character from input buffer
@@ -113,18 +124,29 @@ int main() {
             break;
 
         case '4':
+            bool completed;
             std::cout << "\nEnter the task number to edit: ";
             std::cin >> taskNumber;
             std::cin.ignore(); // Clears the newline character from input buffer
             std::cout << "\nEnter new task description: ";
             std::getline(std::cin, taskDescription);
-            todo.editTask(taskNumber - 1, taskDescription);
+            std::cout << "\nIs the task completed? (y/n): ";
+            std::cin >> choice;
+            std::cin.ignore(); // Clears the newline character from input buffer
+            todo.editTask(taskNumber - 1, taskDescription, completed);
             break;
 
         case '5':
+            std::cout << "\nEnter the task number to delete: ";
+            std::cin >> taskNumber;
+            std::cin.ignore(); // Clears the newline character from input buffer
+            todo.deleteTask(taskNumber - 1);
+            break;
+        
+        case '6':
             std::cout << "\nExiting..." << std::endl;
             break;
-
+        
         default:
             std::cout << "\nInvalid choice. Please try again." << std::endl;
     }
